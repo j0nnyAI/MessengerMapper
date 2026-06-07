@@ -1,6 +1,6 @@
 # MessengerMapper
 
-An advanced, forensic-grade layout engine that transforms high-density chat logs and messaging metadata into clear, courtroom-ready visual exhibits. 
+An advanced, forensic-grade layout engine purpose-built to parse end-to-end encrypted Facebook Messenger export logs and transform high-density chat metadata into clear, courtroom-ready visual timelines.
 
 Built with **Python**, **ReportLab**, and a zero-grid layout matrix, **MessengerMapper** eliminates manual timeline generation, structures disparate text/media records, and applies dynamic typographic scaling to spotlight critical communication events like connected and unanswered video calls.
 
