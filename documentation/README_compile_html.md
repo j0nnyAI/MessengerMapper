@@ -1,10 +1,10 @@
-# Technical Specifications & Legal Audit Framework: core/parse_calls.py (v3)
+# Technical Specifications & Legal Audit Framework: core/parse_calls.py
 
 ## 1. Executive Architecture Overview
 
-`core/parse_calls.py` is a generalized forensic ingestion engine for standardized Meta/Facebook Messenger JSON export payloads. Under **version v3**, it transforms platform-native message objects into a normalized, reverse-chronological communication timeline suitable for technical peer review, cross-examination preparation, and judicial presentation.
+`core/parse_calls.py` is a generalized forensic ingestion engine for standardized Meta/Facebook Messenger JSON export payloads. It transforms platform-native message objects into a normalized, reverse-chronological communication timeline suitable for technical peer review, cross-examination preparation, and judicial presentation.
 
-Unlike a single-case hardcoded utility, the interactive HTML exhibit engine wrapper `compile_html.py` (which runs the core ingestion engine under the hood) accepts **runtime CLI parameters** that substitute the input export file, temporal filter boundary, and left/right party identity labels without modifying core parsing algorithms. Any compliant Messenger export that exposes a top-level `messages[]` array, millisecond `timestamp` fields, and `senderName` attribution strings can be processed by supplying the appropriate `-f`, `--left-party`, and `--right-party` values at execution time under the v3 specification.
+Unlike a single-case hardcoded utility, the interactive HTML exhibit engine wrapper `compile_html.py` (which runs the core ingestion engine under the hood) accepts **runtime CLI parameters** that substitute the input export file, temporal filter boundary, and left/right party identity labels without modifying core parsing algorithms. Any compliant Messenger export that exposes a top-level `messages[]` array, millisecond `timestamp` fields, and `senderName` attribution strings can be processed by supplying the appropriate `-f`, `--left-party`, and `--right-party` values at execution time under the layout and metrics specification.
 
 The script performs four deterministic operations on each execution:
 

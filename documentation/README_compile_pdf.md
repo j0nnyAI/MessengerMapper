@@ -1,10 +1,10 @@
-# Technical Specifications & Legal Audit Framework: compile_pdf.py (v3)
+# Technical Specifications & Legal Audit Framework: compile_pdf.py
 
 ## 1. Executive Architecture Overview
 
-`compile_pdf.py` is the print-matrix generator for the Messenger forensic exhibit suite. Under **version v3**, it ingests unified data layers—raw Meta export JSON (resolved at runtime inside `Messenger_Import`), the media rename manifest, and the call annotation override CSV—and compiles them into a multi-page, text-only PDF artifact (`EXHIBITS/timeline_exhibit.pdf` or `EXHIBITS/timeline_exhibit_chalk_line.pdf`) optimized for legal binders, hole-punch margins, and courtroom handoff.
+`compile_pdf.py` is the print-matrix generator for the Messenger forensic exhibit suite. It ingests unified data layers—raw Meta export JSON (resolved at runtime inside `Messenger_Import`), the media rename manifest, and the call annotation override CSV—and compiles them into a multi-page, text-only PDF artifact (`EXHIBITS/timeline_exhibit.pdf` or `EXHIBITS/timeline_exhibit_chalk_line.pdf`) optimized for legal binders, hole-punch margins, and courtroom handoff.
 
-The script performs five sequential operations on each execution under the v3 specification:
+The script performs five sequential operations on each execution under the layout and metrics specification:
 
 1. **Resolve** the target JSON export via explicit path or automatic directory discovery inside `Messenger_Import`.
 2. **Normalize** all record timestamps to Eastern wall-clock time (`America/New_York`).

@@ -1,10 +1,10 @@
-# Technical Specifications & Layout Framework: compile_chalk_line.py (v3)
+# Technical Specifications & Layout Framework: compile_chalk_line.py
 
-`compile_chalk_line.py` is the standalone zero-grid presentation generator of the Messenger forensic exhibit suite. Under **version v3**, it compiles unified data layers into a high-contrast centerline timeline exhibit (`EXHIBITS/timeline_exhibit_chalk_line.pdf`) optimized for high-density legal and courtroom presentation.
+`compile_chalk_line.py` is the standalone zero-grid presentation generator of the Messenger forensic exhibit suite. It compiles unified data layers into a high-contrast centerline timeline exhibit (`EXHIBITS/timeline_exhibit_chalk_line.pdf`) optimized for high-density legal and courtroom presentation.
 
 ## 1. Architectural Highlights
 
-- **Version Standard**: Aligns with the version v3 layout and metrics logic framework.
+- **Layout Standard**: Aligns with the centerline layout and metrics logic framework.
 - **Standalone Operation**: Directly inherits the ingestion engine from the baseline utility (`from compile_pdf import parse_records`) but encapsulates all ReportLab layout styling, canvas building, and CLI parameters locally.
 - **Path Isolation**: Resolves relative input JSON file names and the call annotations manifest (`call_annotations.csv`) against `Messenger_Import/`, and retrieves video thumbnails and images from the volatile cache `EXHIBITS/media/`. Writes the final PDF directly to the `EXHIBITS/` folder.
 - **PII-Free Execution**: No names are hardcoded. Relies exclusively on `--left-party` and `--right-party` CLI parameters, with an elegant dynamic participant auto-detection fallback from the target JSON file.
@@ -42,7 +42,7 @@ This guarantees that the timeline parsing logic is never broken by label adjustm
 
 ## 3. Ingestion & Metric Calculations
 
-Categorical message counts are calculated inside `compute_metrics(records)` using the following rules under the version v3 logic engine:
+Categorical message counts are calculated inside `compute_metrics(records)` using the following rules:
 
 * **Sender-Based Ingestion (Initiator)**:
   * **Text Messages**: Credited strictly to the sender/initiator.

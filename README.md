@@ -1,12 +1,12 @@
-# MessengerMapper (v3)
+# MessengerMapper
 
 An advanced, forensic-grade layout engine that transforms high-density chat logs and messaging metadata into clear, courtroom-ready visual exhibits. 
 
-Built with **Python**, **ReportLab**, and a zero-grid layout matrix, **MessengerMapper v3** eliminates manual timeline generation, structures disparate text/media records, and applies dynamic typographic scaling to spotlight critical communication events like connected and unanswered video calls.
+Built with **Python**, **ReportLab**, and a zero-grid layout matrix, **MessengerMapper** eliminates manual timeline generation, structures disparate text/media records, and applies dynamic typographic scaling to spotlight critical communication events like connected and unanswered video calls.
 
 ---
 
-## 🎨 System v3 Visual & Logic Specifications
+## 🎨 Core Visual & Logic Specifications
 
 ### 1. HTML Layout System & Interface
 * **3-Column Grid Layout Engine**: Implements a strict **45% | 10% | 45%** grid visual layout (`.row` and `.col-bar` grid styles) to map Outbound (Left) and Inbound (Right) events on opposite sides of a center chronological timeline track.
