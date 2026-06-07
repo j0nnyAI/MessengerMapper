@@ -1,8 +1,8 @@
-# Block forensic asset directories and caches
-/media/
-/photos/
-/thumbnails/
-/videos/
+# Block forensic asset directories and caches globally across all subfolders
+**/media/
+**/photos/
+**/thumbnails/
+**/videos/
 /call_annotations.csv
 /diagnose.py
 /venv/
@@ -15,13 +15,13 @@
 !/Messenger_Import/.gitkeep
 !/Messenger_Import/README.md
 
-# Block all source text transcripts and raw JSON logs
+# Block all source text transcripts and raw JSON logs globally
 *.json
 *.html
 
-# Block all generated courtroom artifacts
+# Block all generated courtroom artifacts globally
 *.pdf
 
 # Python bytecode and caches
-__pycache__/
+**/__pycache__/
 *.pyc
