@@ -437,7 +437,7 @@ def parse_messages(path: Path, annotations: dict[tuple, dict],
 
 CSS = """
 :root {
-    --blue:      #0052cc;
+    --blue:      #0B3C73;
     --blue-bg:   #e6f0ff;
     --blue-dim:  #99c2ff;
     --grey:      #e4e6eb;
@@ -613,9 +613,9 @@ body {
 }
 .cb-left {
     padding: 9px 16px;
-    background: var(--blue-bg);
-    font-size: 11px;
-    font-weight: 800;
+    background: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
     letter-spacing: .7px;
     text-transform: uppercase;
     color: var(--blue);
@@ -623,7 +623,7 @@ body {
 }
 .cb-center {
     padding: 9px 4px;
-    background: #fafafa;
+    background: #ffffff;
     font-size: 9.5px;
     font-weight: 700;
     letter-spacing: .5px;
@@ -634,9 +634,9 @@ body {
 }
 .cb-right {
     padding: 9px 16px;
-    background: #f3f3f3;
-    font-size: 11px;
-    font-weight: 800;
+    background: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
     letter-spacing: .7px;
     text-transform: uppercase;
     color: #444;
