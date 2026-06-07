@@ -238,18 +238,23 @@ def make_cell(rec: dict, is_left: bool = True) -> Paragraph | list:
                     orig_w = img.imageWidth
                     orig_h = img.imageHeight
                     
-                    if orig_w > 0:
-                        max_w = 180.0
-                        scale = max_w / orig_w
-                        img.drawWidth = max_w
-                        img.drawHeight = orig_h * scale
+                    if orig_w > 0 and orig_h > 0:
+                        max_w = 210.0
+                        max_h = 200.0
+                        scale = min(max_w / orig_w, max_h / orig_h)
+                        if scale < 1.0:
+                            img.drawWidth = orig_w * scale
+                            img.drawHeight = orig_h * scale
+                        else:
+                            img.drawWidth = orig_w
+                            img.drawHeight = orig_h
                         
                     img.hAlign = 'RIGHT' if is_left else 'LEFT'
                     
                     label_html = f"{ts_prefix}<b>{media_type_label}: {filename}</b>"
                     p_flowable = Paragraph(label_html, body_style)
                     
-                    return KeepTogether([p_flowable, Spacer(1, 4), img])
+                    return KeepTogether([p_flowable, Spacer(1, 4), img, Spacer(1, 8)])
                 except Exception:
                     pass
             else:
