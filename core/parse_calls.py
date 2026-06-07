@@ -437,15 +437,16 @@ def parse_messages(path: Path, annotations: dict[tuple, dict],
 
 CSS = """
 :root {
-    --blue:      #0B3C73;
-    --blue-bg:   #e6f0ff;
-    --blue-dim:  #99c2ff;
-    --grey:      #e4e6eb;
-    --grey-dim:  #65676b;
-    --dark:      #1c1e21;
-    --page-bg:   #f0f2f5;
-    --border:    #dddfe2;
-    --red:       #cc0000;
+    --blue:        #0B3C73;
+    --blue-bubble: rgba(11, 60, 115, 0.85);
+    --blue-bg:     #e6f0ff;
+    --blue-dim:    #99c2ff;
+    --grey:        #e4e6eb;
+    --grey-dim:    #65676b;
+    --dark:        #1c1e21;
+    --page-bg:     #f0f2f5;
+    --border:      #dddfe2;
+    --red:         #cc0000;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -714,7 +715,7 @@ body {
     width: auto;
     margin: 0;
 }
-.bbl-l { background: var(--blue); color: #fff; border-bottom-left-radius: 4px; }
+.bbl-l { background: var(--blue-bubble); color: #fff; border-bottom-left-radius: 4px; }
 .bbl-r { background: var(--grey); color: #050505; border-bottom-right-radius: 4px; }
 
 .bbl-meta { display: block; font-size: 10px; font-weight: 600; margin-bottom: 3px; }
@@ -780,7 +781,7 @@ a.folder-btn:hover { opacity: 0.78; }
 
 /* ── Call bubble overrides ── */
 .bbl-l.bbl-call {
-    background: var(--blue);
+    background: var(--blue-bubble);
     border: 2px solid rgba(255,255,255,0.28);
     box-shadow: 0 2px 10px rgba(11,60,115,0.3);
 }
