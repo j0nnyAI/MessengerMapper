@@ -5,7 +5,7 @@ Place your raw, unzipped Facebook Messenger export files directly into this dire
 ## How to Download Your Data from Meta
 
 1. **Navigate to Accounts Center**:
-   - Go to [facebook.com/your_information](https://www.facebook.com/your_information) or access **Accounts Center** via Instagram/Facebook settings.
+   - Go to [messenger.com](https://messenger.com) 
 2. **Request Your Information**:
    - Click on **Download your information**.
    - Select **Download or transfer information**.
