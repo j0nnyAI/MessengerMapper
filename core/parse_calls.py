@@ -437,9 +437,9 @@ def parse_messages(path: Path, annotations: dict[tuple, dict],
 
 CSS = """
 :root {
-    --blue:      #0084ff;
-    --blue-bg:   #e8f4ff;
-    --blue-dim:  #b3d9ff;
+    --blue:      #0052cc;
+    --blue-bg:   #e6f0ff;
+    --blue-dim:  #99c2ff;
     --grey:      #e4e6eb;
     --grey-dim:  #65676b;
     --dark:      #1c1e21;
@@ -494,7 +494,7 @@ body {
 }
 .metrics-column h2 {
     color: #FFFFFF;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 800;
     letter-spacing: 1.2px;
     margin-bottom: 16px;
