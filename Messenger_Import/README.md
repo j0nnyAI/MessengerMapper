@@ -23,5 +23,18 @@ Place your raw, unzipped Facebook Messenger export files directly into this dire
 5. **Submit and Download**:
    - Click **Download**. 
    - *Note on Processing Time*: Depending on your selected media quality and target timeframe, you will have to wait either minutes (for low quality) or days (for higher-quality) for Meta to generate the data archive.
+   -  Once you receive the notification that the file is ready, download the `.zip` archive
   
-   Once you receive the notification that the file is ready, download the `.zip` archive, extract its contents, and place them directly into this folder.
+6. **Extract**:
+   - Extract the .zip file contents directly into this folder.
+
+   ## Expected Directory Structure
+
+```text
+export.zip
+├── name_1.json      # User you chatted with
+├── ...
+├── name_9.json      # User you chatted with
+└── media/           # Folder containing all images and videos
+    ├── UUID.jpg     # Embedded image attachment
+    └── UUID.mp4     # Embedded video attachment
