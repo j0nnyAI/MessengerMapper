@@ -240,7 +240,7 @@ def make_cell(rec: dict, is_left: bool = True) -> Paragraph | list:
                     
                     if orig_w > 0 and orig_h > 0:
                         max_w = 210.0
-                        max_h = 200.0
+                        max_h = 140.0
                         scale = min(max_w / orig_w, max_h / orig_h)
                         if scale < 1.0:
                             img.drawWidth = orig_w * scale
@@ -254,7 +254,7 @@ def make_cell(rec: dict, is_left: bool = True) -> Paragraph | list:
                     label_html = f"{ts_prefix}<b>{media_type_label}: {filename}</b>"
                     p_flowable = Paragraph(label_html, body_style)
                     
-                    return KeepTogether([p_flowable, Spacer(1, 4), img, Spacer(1, 8)])
+                    return KeepTogether([p_flowable, Spacer(1, 2), img, Spacer(1, 4)])
                 except Exception:
                     pass
             else:
