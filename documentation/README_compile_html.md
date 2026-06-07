@@ -13,7 +13,7 @@ The script performs four deterministic operations on each execution:
 3. **Normalize** all timestamps to Eastern wall-clock time (`America/New_York`) and overlay independent call-status annotations from a headerless CSV manifest inside `Messenger_Import`.
 4. **Render** an isolated HTML exhibit (`EXHIBITS/timeline_report.html`) without mutating any files in `Messenger_Import`.
 
-A companion script, `compile_pdf.py`, consumes the same source layers to produce a print-optimized PDF exhibit (`timeline_exhibit.pdf`). That pipeline is documented in [README_compile_pdf.md](README_compile_pdf.md); this specification covers `core/parse_calls.py` and the `compile_html.py` wrapper.
+A companion script, `compile_pdf.py`, consumes the same source layers to produce a print-optimized PDF exhibit (`timeline_exhibit.pdf`). That pipeline is documented in [README_compile_pdf.md](file:///d:/PROJECTS/messenger-logs/documentation/README_compile_pdf.md); this specification covers `core/parse_calls.py` and the `compile_html.py` wrapper.
 
 ### Foundational Tech Stack
 
