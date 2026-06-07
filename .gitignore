@@ -1,0 +1,27 @@
+# Block forensic asset directories and caches
+/media/
+/photos/
+/thumbnails/
+/videos/
+/call_annotations.csv
+/diagnose.py
+/venv/
+
+# Ignore directory contents but explicitly preserve the folder structures via .gitkeep
+/EXHIBITS/*
+!/EXHIBITS/.gitkeep
+
+/Messenger_Import/*
+!/Messenger_Import/.gitkeep
+!/Messenger_Import/README.md
+
+# Block all source text transcripts and raw JSON logs
+*.json
+*.html
+
+# Block all generated courtroom artifacts
+*.pdf
+
+# Python bytecode and caches
+__pycache__/
+*.pyc
