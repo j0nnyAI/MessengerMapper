@@ -780,9 +780,9 @@ a.folder-btn:hover { opacity: 0.78; }
 
 /* ── Call bubble overrides ── */
 .bbl-l.bbl-call {
-    background: #005fcc;
+    background: var(--blue);
     border: 2px solid rgba(255,255,255,0.28);
-    box-shadow: 0 2px 10px rgba(0,95,204,0.45);
+    box-shadow: 0 2px 10px rgba(11,60,115,0.3);
 }
 .bbl-r.bbl-call {
     background: #d0d3db;
