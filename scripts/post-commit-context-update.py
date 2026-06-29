@@ -280,12 +280,17 @@ def parse_review_trailer(message: str) -> str | None:
 
 def spawn(cmd: list[str]) -> None:
     try:
-        subprocess.Popen(
-            cmd,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            start_new_session=True,
-        )
+        kwargs: dict = {
+            "stdout": subprocess.DEVNULL,
+            "stderr": subprocess.DEVNULL,
+            "start_new_session": True,
+        }
+        if sys.platform == "win32":
+            # Prevent background processes from attaching to the parent console.
+            # start_new_session alone only creates a new process group on Windows;
+            # CREATE_NO_WINDOW is required to suppress console handle inheritance.
+            kwargs["creationflags"] = subprocess.CREATE_NO_WINDOW
+        subprocess.Popen(cmd, **kwargs)
     except OSError as exc:
         _log_telemetry("FAIL", f"spawn failed for {cmd!r}: {exc}")
 
