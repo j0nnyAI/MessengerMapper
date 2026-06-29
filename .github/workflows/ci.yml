@@ -1,0 +1,100 @@
+# CI — MessengerMapper
+#
+# Two-job layout per THE-NEXUS ci-cd-pattern.md:
+#   nexus-gate  : structural hygiene via doctor.py (always runs first)
+#   app-tests   : application test suite (runs only if nexus-gate passes)
+#
+# OPERATOR SETUP REQUIRED:
+#   1. Replace MessengerMapper if not done by initialize-project.py.
+#   2. Fill in the app-tests job with your language-specific test commands.
+#   3. Adjust the Python version in nexus-gate if your project uses a different version.
+#   4. Add secrets (e.g. NEXUS_REPO_URL) to your repository settings if needed.
+
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+
+  # ---------------------------------------------------------------------------
+  # Job 1: Nexus structural gate
+  # Clones THE-NEXUS as a sibling, then runs doctor.py against this project.
+  # Fails fast if framework hygiene checks do not pass.
+  # Do not modify this job without updating ci-cd-pattern.md.
+  # ---------------------------------------------------------------------------
+  nexus-gate:
+    name: Nexus Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+        with:
+          path: MessengerMapper
+
+      - name: Checkout THE-NEXUS (sibling)
+        uses: actions/checkout@v4
+        with:
+          # OPERATOR: set this to your Nexus engine repo (e.g. your-org/nexus-engine)
+          repository: ${{ vars.NEXUS_ENGINE_REPO }}
+          # If the engine repo is private, add a PAT secret:
+          # token: ${{ secrets.NEXUS_ACCESS_TOKEN }}
+          path: nexus-engine
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install doctor dependencies
+        run: pip install inquirerpy
+        # doctor.py imports InquirerPy for interactive flows; non-interactive
+        # checks still run without a TTY.
+
+      - name: Run Nexus doctor
+        working-directory: nexus-engine
+        run: python THE-NEXUS/scripts/doctor.py
+
+  # ---------------------------------------------------------------------------
+  # Job 2: Application tests
+  # Replace the placeholder step with your project's actual test commands.
+  # This job only starts if nexus-gate passes.
+  # ---------------------------------------------------------------------------
+  app-tests:
+    name: Application Tests
+    runs-on: ubuntu-latest
+    needs: nexus-gate
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+
+      # REPLACE THIS STEP with your language-specific setup and test commands.
+      # Examples:
+      #
+      #   Python / pytest:
+      #     - uses: actions/setup-python@v5
+      #       with: { python-version: "3.12" }
+      #     - run: pip install -e ".[dev]"
+      #     - run: pytest
+      #
+      #   Node / npm:
+      #     - uses: actions/setup-node@v4
+      #       with: { node-version: "20" }
+      #     - run: npm ci
+      #     - run: npm test
+      #
+      #   Rust / cargo:
+      #     - run: cargo test
+      #
+      #   Go:
+      #     - uses: actions/setup-go@v5
+      #       with: { go-version: "stable" }
+      #     - run: go test ./...
+      #
+      - name: Placeholder — replace with real test commands
+        run: echo "No tests configured yet. Replace this step in .github/workflows/ci.yml."

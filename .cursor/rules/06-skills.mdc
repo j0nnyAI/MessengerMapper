@@ -1,0 +1,38 @@
+---
+description: Skills catalog and auto-invocation triggers. Auto-attached when procedural work is detected (planning, lessons, and source-code edits).
+globs: ["**/06-PLANS/**", "**/07-LESSONS/**", "**/03-SKILLS/**", "**/*.py", "**/*.ts", "**/*.tsx", "**/*.js"]
+---
+
+<!--
+FILE: .cursor/rules/06-skills.mdc
+PURPOSE: Surfaces the NEXUS skills menu when procedural guidance is relevant.
+GENERATED: by sync-assets-to-template.py. Re-run with --force to refresh from _SKILLS-INDEX.md.
+-->
+
+# Skills
+
+Source of truth: `../THE-NEXUS/03-SKILLS/_SKILLS-INDEX.md`. Read the canonical skill file before executing the protocol.
+
+| Skill | When to Use |
+|---|---|
+| `brainstorming` | Before any creative or non-trivial work. Refines intent through questions. |
+| `writing-plans` | When you have a spec; produces an executable implementation plan. |
+| `executing-plans` | When following a written plan with review checkpoints. |
+| `systematic-debugging` | Any bug, test failure, or unexpected behavior, before proposing fixes. |
+| `test-driven-development` | Implementing any feature or bugfix, before writing implementation. |
+| `context-handoff` | When context window is filling and a new session is imminent. |
+| `commit-narrative` | Milestone commits only (release, breaking change, post-incident, architectural pivot). Skip routine commits — the async post-commit hook handles those. |
+| `requesting-code-review` | When completing tasks or before merging. |
+| `verification-before-completion` | Before claiming work is "done", "fixed", or "passing". |
+| `using-subagents` | When facing 2+ independent tasks with no shared state. |
+| `reading-the-vault-first` | Mandatory first step on every session. |
+| `create-roadmap` | **Roadmap (Phase A only)** — after an audit is complete. Operator says `roadmap`, `create roadmap`, or `create roadmap from <file>`. Requires explicit audit source when >1 recent/open audit or >1 active roadmap; Check C refuses duplicate from linked audit. Phase A.5 sibling reconcile (Step 2.5) before work order. Writes ordered plan to `16-ROADMAPS/`. |
+| `update-roadmap` | **Roadmap (Phase B only)** — during remediation. Operator says `update roadmap`, `mark S-XX done`, or `mark OW-XX quality`. Updates row status + Session notes on existing active roadmap; syncs `_ROADMAPS-INDEX` open count. **Step 2.5 runs RAT before `quality`.** When last row closes (open count → 0), **asks operator before proceeding to roadmap completion (Step 6)** — never silently skips. Step 6 is atomic: done + audit remediation + physical move to `16-ROADMAPS/ARCHIVE/` + archive index update. Never creates a new `16-ROADMAPS/` file. |
+| `validate-roadmap` | **Roadmap (diagnostic, any phase)** — operator says `validate roadmap <file>` or `validate roadmap`. Read-only cross-check: classifies every row as CLOSED / OPEN / AMBIGUOUS using Session notes + frontmatter + paired GAPS file. No writes. Use before resuming an old roadmap to confirm what is genuinely open. |
+| `verify-roadmap-row` | **Roadmap (Phase B quality gate)** — before `mark … quality`. Runs Remediation Acceptance Tests (RAT); refuses false positives; operator may waive with reason. Invoked by update-roadmap Step 2.5 or `verify S-XX`. |
+| `archive-roadmap` | **Roadmap (Phase D)** — retire a completed track. Operator says `100% remediated` or `archive roadmap`. Atomic done + audit remediated + move to `16-ROADMAPS/ARCHIVE/`; main index active-only. |
+| `resume-roadmap-row` | **Roadmap (Phase B session start)** — operator says `resume S-XX`, `start OW-04`, or `OW-04 only`. Loads one row's Session notes; locks session to that row; refuses second row. Read-only until implementation. |
+| `remediation-gap-watch` | **Roadmap (Phase B overlay)** — `gaps on` / `enable gaps` / `watch gaps` / `find gaps` (no scope) → § **Mandatory cascade**; buffer on blast-radius traversals; **flush before row `quality`**. Operator does not re-paste watch directive. **Not** `gap analysis on <scope>`. Off: `gaps off`. |
+| `framework-asset-author` | **Meta-framework authoring** — before creating, extending, overriding, or importing engine personas, skills, or prompts. Covers PERSONA-SCHEMA, `new-persona.py` / `new-skill.py` / `nexus-import.py`, distribution safety, and `doctor.py -full` gate. **Not** Phase B row work — use [[resume-roadmap-row]] first. |
+
+Canonical definitions live at `../THE-NEXUS/03-SKILLS/<name>.md`. Project-local Claude wrappers (when present) live at `.claude/skills/<name>/SKILL.md`.

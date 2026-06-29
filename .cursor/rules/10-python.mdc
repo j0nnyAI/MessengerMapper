@@ -1,0 +1,37 @@
+---
+description: Python code style. Auto-attached on Python files.
+globs: ["**/*.py", "**/pyproject.toml", "**/requirements*.txt", "**/uv.lock"]
+---
+
+<!--
+FILE: .cursor/rules/10-python.mdc
+PURPOSE: Auto-loads Python style when editing Python files.
+-->
+
+# Python style
+
+Source of truth: `../THE-NEXUS/04-STANDARDS/code-style/python.md`.
+
+## Headlines
+
+- Tooling: `uv` (deps), `ruff` (lint+format), `mypy --strict` (type), `pytest` (tests).
+- `pyproject.toml` is the only config home.
+- `src/` layout mandatory.
+- Type hints required on all public functions and class attributes. Prefer `collections.abc` over `typing` for runtime-checkable types.
+- Docstrings (Google style) on every public function/class.
+- **Never** bare `except:` or `except Exception` without logging.
+- **Never** `print` in non-CLI code; use module-level `logger = logging.getLogger(__name__)`.
+- **Never** `*` imports.
+- **Never** mutable default args.
+- `pathlib.Path` over `os.path`.
+- `subprocess.run(..., check=True)`; **never** `shell=True` with user input.
+- `f-strings` for formatting; `%`-formatting only for `logging.*` calls (lazy eval).
+
+## Secrets
+
+```python
+import os
+TOKEN = os.environ["MY_TOKEN"]  # Fail loudly on missing key
+```
+
+Never inline. Never silent defaults that hide misconfiguration.

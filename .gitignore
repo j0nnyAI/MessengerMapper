@@ -25,3 +25,8 @@
 # Python bytecode and caches
 **/__pycache__/
 *.pyc
+
+# THE-NEXUS system constraints (initialize-project.py)
+**/handoff.lock
+**/*.tmp
+**/*.nexus

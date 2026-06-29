@@ -1,0 +1,50 @@
+---
+description: Security standards and secrets handling. Auto-attached on infra files, env files, auth code, and dependency manifests.
+globs: ["**/*.tf", "**/*.tfvars", "**/Dockerfile", "**/docker-compose*.yml", "**/.env*", "**/auth/**", "**/security/**", "**/iam/**", "**/requirements*.txt", "**/pyproject.toml", "**/package.json", "**/package-lock.json", "**/pnpm-lock.yaml"]
+---
+
+<!--
+FILE: .cursor/rules/02-security.mdc
+PURPOSE: Auto-loads security standards when relevant files are open.
+-->
+
+# Security standards (auto-loaded)
+
+Source of truth: `../THE-NEXUS/04-STANDARDS/security-standards.md` and `../THE-NEXUS/04-STANDARDS/secrets-handling.md`.
+
+## Hard rules
+
+### Always
+
+- Encrypt at rest. Encrypt in transit. No exceptions for "internal" services.
+- Default-deny network. Justify every public surface.
+- Least-privilege IAM. No `*` actions/resources without an inline comment justifying.
+- Pinned, lockfiled, scanned dependencies.
+- Logs sanitized: no secrets, no PII, no auth tokens.
+- Audit trails on Confidential/Restricted data access.
+
+### Ask first (before producing the change)
+
+- New public-facing endpoint.
+- New external dependency.
+- Sending Confidential data to any third-party SaaS (including AI).
+- Lowering an IAM scope to "make things work".
+
+### Never
+
+- Commit secrets. Pre-commit `gitleaks` runs.
+- Log secrets, PHI, tokens, session keys.
+- HTTP for non-public surfaces.
+- Roll your own crypto.
+- Default credentials anywhere.
+- Send Restricted data to a cloud AI provider.
+
+## When auth/secrets/IAM/network is touched
+
+Hand to security-auditor before "done". See `../THE-NEXUS/02-PERSONAS/security-auditor.md`.
+
+## STRIDE-lite checklist
+
+Apply to any feature touching auth, data, or external surfaces:
+
+- Spoofing? Tampering? Repudiation? Info disclosure? DoS amplification? Elevation?

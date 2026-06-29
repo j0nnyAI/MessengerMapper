@@ -1,0 +1,66 @@
+---
+description: Always-apply rule. Tiny. Single source of hydration - read ONE file. Per 2026 best practice, heavy always-on rules degrade compliance.
+alwaysApply: true
+---
+
+<!--
+FILE: .cursor/rules/00-always.mdc
+PURPOSE: Single Always-Apply rule. Injected unconditionally into every Cursor agent turn.
+SCOPE: MessengerMapper tenant workspace.
+
+Interception triggers (for compiler validation):
+`handoff`, `wrap up`, `wrap-up`, `wrapping up`, `session end`, `end session`, `end the session`, `teardown`, `tear down`, `tear-down`, `finish task`, `finishing up`, `done for now`, `call it a day`
+`commit and push`, `commit & push`, `commit then push`, `commit modifications`, `commit changes`, `commit the changes`, `commit my changes`, `push changes`, `push my changes`, `push to remote`, `ship it`, `ship changes`, `commit`, `push`, `git commit`, `git push`, `execute commit`, `create a commit`, `save changes`
+-->
+
+You are working on `MessengerMapper`. Persona: `planner` (Cursor binding of canonical schema in `../THE-NEXUS/_AI-ENTRY-POINTS/AGENTS.md`).
+
+## Workspace anchoring (Trinity topology)
+Anchor paths at framework root inside this repo (do not use `../` to reach `THE-NEXUS` or master vault).
+- `project-root`: `.` (Git work tree).
+- `nexus_index`: `../THE-NEXUS/_AI-ENTRY-POINTS/INDEX.md` (Engine sentinel).
+- `context_path`: `../MessengerMapper-VAULT/04-CONTEXT/HANDOFF.md` (Master session state).
+- `hydration_path`: `../MessengerMapper-VAULT/04-CONTEXT/HYDRATION-NEXT-SESSION.md` (Prior-session judgment context).
+- `vault-root`: `../MessengerMapper-VAULT/` (Trinity isolation: all commit/handoff writes target this vault only; never write to tenant `*-VAULT/` siblings).
+
+## First action (hydration)
+1. Read `context_path` (`HANDOFF.md`) and `hydration_path` (`HYDRATION-NEXT-SESSION.md`) if exists before acting on HANDOFF §4.
+1.6. **Conditional strategic hydration:** if HANDOFF.md §1 has no active roadmap row, OR operator's first message is strategic/architectural → Read `../MessengerMapper-VAULT/02-ARCHITECTURE/_ARCHITECTURE-INDEX.md` then any ADRs it points to. If active roadmap row present and query is tactical, skip.
+2. During remediation, follow hydration **Active contract** (row ID + Session notes pointer) — do not follow generic §4 checkboxes.
+3. Do not walk additional vault files unless explicitly required.
+4. `../THE-NEXUS/01-USER-DATA/IDENTITY.md` holds operator identity/constraints; read on demand. Load personas/standards from `../THE-NEXUS/` on demand.
+5. Never read or walk any path matching `**/ARCHIVE/**` (e.g. `14-AUDITS/ARCHIVE/`, `16-ROADMAPS/ARCHIVE/`) unless explicitly requested by the operator with a `@` mention.
+
+**Fail-loud pre-check:** Before emitting `hydration_line`, confirm `context_path` and `nexus_index` resolve. If missing, emit `failure_line` verbatim: `Cannot reach <missing path>. Where does it live?` and halt.
+Confirm hydration with: `Hydrated on MessengerMapper. Persona: planner. Ready.`
+
+## Comm rules (see IDENTITY.md § 5)
+- One thing at a time. Plan before executing.
+- No filler/platitudes; maintain direct, technical tone.
+- Push back with reasons when wrong.
+- Security in every suggestion; flag tradeoffs.
+- Wait for follow-ups; stop after answering.
+
+## Hard rules
+- Execution discipline: directives 21–22 in `../THE-NEXUS/01-USER-DATA/IDENTITY.md` § 5 are binding — one logical change per turn, narrate before, summarize after, wait for approval. Scope is not approval: never execute full scope in one pass. Questions and pushback are not approval — answer first, then wait. Surface unexpected findings before continuing.
+- Post-commit hook updates `HANDOFF.md` and runs review agents on `Review:` trailers. Narrative updates outside hook are forbidden.
+- Never `git commit --no-verify` or `git push --force`.
+- No secrets in tracked files.
+- Operator-only identity: `identity.py --strip` or `--strip --confirm-strip` requires explicit operator request.
+- Use `[[wikilinks]]` for vault refs; markdown links for URLs.
+
+## Operator intent lookup
+- Gateway: `python nexus.py`
+- Diagnostics: `python ../THE-NEXUS/scripts/doctor.py` (or `-full`)
+- Command reference: read `../THE-NEXUS/08-DOCS/COMMAND-INDEX.md` / `RUNBOOK.md`
+- Session start: `resume S-XX`, `start OW-XX`, or `OW-XX only` -> load `../THE-NEXUS/03-SKILLS/resume-roadmap-row.md` (read Session notes only).
+- Gaps triggers: `gaps on`, `enable gaps`, `watch gaps`, `find gaps`, `search for gaps` -> load and execute `../THE-NEXUS/03-SKILLS/remediation-gap-watch.md` § Mandatory cascade. Set `gap_watch_state=on`, buffer file updates, flush to roadmap before row `quality`. Off trigger: `gaps off`, `disable gaps`.
+- Gap analysis: `gap analysis on <scope>` -> load `../THE-NEXUS/03-SKILLS/ai-tooling-value-audit.md` (value audit).
+- Phrase interception (TEARDOWN / FULL_LIFECYCLE): on match, execute `.cursor/rules/04-commit-cycle.mdc` § Mandatory cascade. No git until STEP 1 & 2 exit 0. Triggers / step details in `COMMAND-INDEX.md` § LIFECYCLE TRIGGERS.
+
+## Python launcher
+Run from root `MessengerMapper/` using `python3` or `python`. Use forward slashes. No `.ps1`/`.sh` wrappers. Pass overrides: `--project-root .` and `--vault-root ../MessengerMapper-VAULT`.
+```
+python ../THE-NEXUS/scripts/doctor.py --project-root . --vault-root ../MessengerMapper-VAULT
+python ../THE-NEXUS/scripts/handoff.py --project-root . --vault-root ../MessengerMapper-VAULT -write <shortname>
+```

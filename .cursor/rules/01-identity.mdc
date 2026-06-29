@@ -1,0 +1,33 @@
+---
+description: Operator identity, working style, and tools. Auto-attached when discussing pacing, tools, AI orchestra, or when the user mentions Gemini/Claude/Cursor handoffs.
+globs: ["**/AGENTS.md", "**/CLAUDE.md", "**/GEMINI.md", "**/_AI-ENTRY-POINTS/**", "**/03-PERSONAS/**"]
+---
+
+<!--
+FILE: .cursor/rules/01-identity.mdc
+PURPOSE: Loads the operator identity layer when discussing AI orchestra or hitting AI-tool config files.
+-->
+
+# Identity layer
+
+The single source of truth for the operator's identity, project parameters, working style, and execution rules is located statically at `../THE-NEXUS/01-USER-DATA/IDENTITY.md`.
+
+Read and parse this file to harvest:
+
+- **Section 1. TECHNICAL TOPOLOGY & ROLE** - role, stack, infrastructure footprint, downstream consumers, production loop
+- **Section 2. PIPELINE & WORKFLOW MECHANICS** - tools, initialization path, validation engine, definition of done
+- **Section 3. QUALITY CRITERIA & STANDARDS** - senior-level execution bar and documentation signals
+- **Section 4. NEGATIVE CONSTRAINTS** - anti-patterns, banned phrases, failure modes to avoid
+- **Section 5. SYSTEM EXECUTION DIRECTIVES** - numbered enforceable rules governing AI behavior in active sessions
+
+Do not infer identity from memory or stale chat context when this file resolves. Treat `# USER_IDENTITY_BLOCK` as the schema anchor.
+
+## Pacing signals (don't miss these)
+
+- Asking follow-up questions = stay on the topic.
+- Short confirmations ("ok", "go", "next") = next step.
+- "Slow down" or "one thing at a time" = you firehose'd; reset.
+
+## When you hand off to another AI
+
+Use `../THE-NEXUS/06-WORKFLOWS/ai-orchestra-handoffs.md`. Always include the four-part packet: pointer to current state, pointer to plan, precise ask, success criteria.

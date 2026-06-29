@@ -1,0 +1,21 @@
+# PURPOSE: Cross-platform line-ending consistency. The operator works on Windows; runners run Linux.
+
+* text=auto eol=lf
+
+# Force LF for shell scripts (must be executable on Linux)
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Force CRLF for PowerShell on Windows hosts
+*.ps1 text eol=crlf
+*.psm1 text eol=crlf
+
+# Treat as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.pdf binary
+*.zip binary
+*.gz binary

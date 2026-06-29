@@ -1,0 +1,86 @@
+---
+description: Architecture governance — ADR creation mandate. Auto-attached when working on architecture docs, roadmap files, or the decisions directory.
+globs: ["**/02-ARCHITECTURE/**", "**/16-ROADMAPS/**", "**/decisions/**"]
+---
+
+<!--
+FILE: .cursor/rules/07-architecture-governance.mdc
+PURPOSE: Enforces ADR creation as a non-optional lifecycle gate for structural decisions.
+         Auto-attaches when the agent opens architecture or roadmap files. Does NOT load
+         on every session — scoped to avoid token cost on unrelated work.
+SCOPE: All bootstrapped MessengerMapper tenant workspaces.
+-->
+
+# Architecture Governance — MessengerMapper
+
+## ADR Invariant
+
+Every closed structural discussion, technology choice pivot, or scope definition change
+**MUST** be frozen into an ADR before session teardown.
+
+A "structural decision" is any one of:
+- A choice between two or more concrete implementation approaches (one rejected, one chosen)
+- A technology or dependency selection with non-obvious tradeoffs
+- A scope boundary change (what is IN vs. explicitly NOT IN a feature)
+- A reversal of a previously locked decision
+
+Routine implementation choices (variable names, minor refactors, bug fixes) do NOT require
+an ADR. When in doubt: if a future AI agent reading only the code could not reconstruct
+*why* this approach was chosen over the obvious alternative, write an ADR.
+
+## Lifecycle gate
+
+A roadmap row **MUST NOT** be marked `quality` or `closed` until:
+
+1. Every structural decision within that row has a corresponding ADR file materialized at:
+   `../MessengerMapper-VAULT/02-ARCHITECTURE/decisions/ADR-NNN-<slug>.md`
+
+2. That ADR is cross-linked in `_ARCHITECTURE-INDEX.md` (one row per ADR).
+
+3. The roadmap row's Session notes field references the ADR by filename or commit.
+
+Marking a row `quality` without a required ADR is a schema violation. If a row contains no
+structural decisions (pure implementation of an already-approved spec), state that
+explicitly in Session notes: `"No structural decisions — spec was pre-approved in ADR-NNN."`
+
+## ADR content minimum
+
+Each ADR must answer:
+- **Context:** What problem was being solved and what was unclear or contested?
+- **Alternatives considered:** What was rejected and why? (This is the most critical section —
+  rejected alternatives prevent future agents from re-proposing defeated approaches.)
+- **Decision:** What was chosen?
+- **Consequences:** What does this enable, constrain, or defer?
+
+## File naming and sequencing
+
+- Location: `../MessengerMapper-VAULT/02-ARCHITECTURE/decisions/`
+- Filename: `ADR-NNN-<kebab-case-slug>.md` where NNN is zero-padded to 3 digits
+- Check existing ADRs for the next available sequence number before writing
+- Frontmatter required:
+
+```yaml
+---
+created: YYYY-MM-DD
+type: adr
+id: ADR-NNN
+title: Short imperative title
+status: accepted
+deciders: [operator-name]
+related_spec: <spec-filename>.md   # if a living spec doc was produced from this ADR
+---
+```
+
+## Cross-link requirement
+
+After writing an ADR, immediately add a row to `_ARCHITECTURE-INDEX.md`:
+
+```markdown
+| YYYY-MM-DD | <scope> | accepted | <one-line summary> | [decisions/ADR-NNN-slug.md](decisions/ADR-NNN-slug.md) |
+```
+
+## Token efficiency note
+
+This rule auto-attaches only when the agent opens `02-ARCHITECTURE/`, `16-ROADMAPS/`,
+or `decisions/` paths. It does not load during routine coding sessions. The per-session
+token cost is incurred only when architectural work is actually in progress.
