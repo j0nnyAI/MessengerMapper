@@ -1,1 +1,0 @@
-Post-commit hook verification placeholder (2026-06-28). Safe to delete after hook test passes.
