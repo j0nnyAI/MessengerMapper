@@ -360,6 +360,27 @@ def _topology_detail() -> str:
     )
 
 
+def dispatch_release_strip() -> None:
+    if PROJECT_ROOT is None or VAULT_DIR is None or NEXUS_DIR is None:
+        return
+    branch = _git_text("rev-parse", "--abbrev-ref", "HEAD")
+    if (branch or "").strip() != "develop":
+        return
+    manifest = VAULT_DIR / "10-DEPLOYMENT" / "nexus-strip-manifest.yml"
+    if not manifest.is_file():
+        return
+    strip_script = NEXUS_DIR / "scripts" / "release-strip.py"
+    if not strip_script.is_file():
+        _log_telemetry("FAIL", f"release-strip.py missing at {strip_script}")
+        return
+    spawn([
+        sys.executable,
+        str(strip_script),
+        "--project-root", str(PROJECT_ROOT),
+        "--vault-root", str(VAULT_DIR),
+    ])
+
+
 def dispatch_context_update() -> None:
     if PROJECT_ROOT is None or VAULT_DIR is None or HANDOFF_ASYNC_UPDATE_SCRIPT is None:
         _log_telemetry("FAIL", "context update skipped: topology not initialized")
@@ -470,6 +491,7 @@ def main() -> int:
         sys.stderr.write("[post-commit] [FAIL] THE-NEXUS not reachable from this project; inheritance layer may dangle\n")
 
     dispatch_context_update()
+    dispatch_release_strip()
 
     scope = parse_review_trailer(message)
     if scope:
