@@ -47,7 +47,7 @@ The brain. Private — never version-controlled. You read and write here for all
 
 - Session state: `../MessengerMapper-VAULT/04-CONTEXT/HANDOFF.md` — read this first every session
 - Hydration context: `../MessengerMapper-VAULT/04-CONTEXT/HYDRATION-NEXT-SESSION.md`
-- Plans: `../MessengerMapper-VAULT/06-PLANS/active/`
+- Plans: `../MessengerMapper-VAULT/02-ARCHITECTURE/plans/active/`
 - Architecture docs: `../MessengerMapper-VAULT/02-ARCHITECTURE/`
 - Roadmaps: `../MessengerMapper-VAULT/16-ROADMAPS/`
 - Audit findings: `../MessengerMapper-VAULT/14-AUDITS/`

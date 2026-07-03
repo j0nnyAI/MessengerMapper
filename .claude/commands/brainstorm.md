@@ -1,6 +1,6 @@
 <!--
 FILE: .claude/commands/brainstorm.md
-PURPOSE: Slash command. /brainstorm <topic> runs the OBRA-style interview engine and writes the synthesis to vault/06-PLANS/active/. Lighter than /new-feature - produces a brainstorm brief only, NOT a full executable plan.
+PURPOSE: Slash command. /brainstorm <topic> runs the OBRA-style interview engine and writes the synthesis to vault/02-ARCHITECTURE/plans/active/. Lighter than /new-feature - produces a brainstorm brief only, NOT a full executable plan.
 LINKS: ../../../THE-NEXUS/10-PROMPTS/feature-brainstorm-interview.md, ../../../THE-NEXUS/10-PROMPTS/interview-engine.md, ../../../THE-NEXUS/03-SKILLS/brainstorming.md
 -->
 
@@ -26,11 +26,11 @@ Read the canonical interview prompt at `../../../THE-NEXUS/10-PROMPTS/feature-br
 
 3. **Synthesize**: produce the synthesis block from `interview-engine.md` and ask the operator: "Ship to active plans? (yes / refine)".
 
-4. **Write**: on `yes`, write to `../MessengerMapper-VAULT/06-PLANS/active/YYYY-MM-DD-<topic>.md` with frontmatter and a `Next step` line pointing at the `writing-plans` skill. Update `06-PLANS/_PLANS-INDEX.md`.
+4. **Write**: on `yes`, write to `../MessengerMapper-VAULT/02-ARCHITECTURE/plans/active/YYYY-MM-DD-<topic>.md` with frontmatter and a `Next step` line pointing at the `writing-plans` skill. Update `02-ARCHITECTURE/plans/_PLANS-INDEX.md`.
 
 5. **Close**: output exactly:
    ```
-   Brainstorm written: 06-PLANS/active/YYYY-MM-DD-<topic>.md.
+   Brainstorm written: 02-ARCHITECTURE/plans/active/YYYY-MM-DD-<topic>.md.
    Next: /new-feature <topic> to expand into an executable plan, or invoke writing-plans directly.
    ```
 

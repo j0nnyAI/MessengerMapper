@@ -1,6 +1,5 @@
 ---
 description: Skills catalog and auto-invocation triggers. Auto-attached when procedural work is detected (planning, lessons, and source-code edits).
-globs: ["**/06-PLANS/**", "**/07-LESSONS/**", "**/03-SKILLS/**", "**/*.py", "**/*.ts", "**/*.tsx", "**/*.js"]
 ---
 
 <!--

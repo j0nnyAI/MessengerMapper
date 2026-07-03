@@ -70,8 +70,8 @@ Each `SKILL.md` references the NEXUS source-of-truth in `../THE-NEXUS/03-SKILLS/
 |---|---|
 | `/handoff` | Writes a handoff doc and ends the session cleanly |
 | `/context-update` | Updates `HANDOFF.md` §2 narrative and §4 next actions mid-session |
-| `/new-feature <name>` | Plan a feature; save plan to `06-PLANS/active/` |
-| `/brainstorm <topic>` | OBRA-style interview; save result to `06-PLANS/active/<topic>.md` |
+| `/new-feature <name>` | Plan a feature; save plan to `02-ARCHITECTURE/plans/active/` |
+| `/brainstorm <topic>` | OBRA-style interview; save result to `02-ARCHITECTURE/plans/active/<topic>.md` |
 
 ## Tool permissions
 

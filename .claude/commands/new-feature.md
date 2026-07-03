@@ -1,6 +1,6 @@
 <!--
 FILE: .claude/commands/new-feature.md
-PURPOSE: Slash command. /new-feature kicks off a feature: brainstorm -> plan -> save plan to 06-PLANS/active/.
+PURPOSE: Slash command. /new-feature kicks off a feature: brainstorm -> plan -> save plan to 02-ARCHITECTURE/plans/active/.
 LINKS: ../../../THE-NEXUS/03-SKILLS/brainstorming.md, ../../../THE-NEXUS/03-SKILLS/writing-plans.md, ../../../THE-NEXUS/07-TEMPLATES/plan.md
 -->
 
@@ -32,8 +32,8 @@ Do NOT firehose. One question at a time.
 Once design is approved by user, invoke the `writing-plans` skill at `../../../THE-NEXUS/03-SKILLS/writing-plans.md`:
 
 1. Use the template `../../../THE-NEXUS/07-TEMPLATES/plan.md`.
-2. Save to `../MessengerMapper-VAULT/06-PLANS/active/YYYY-MM-DD-<short-name>.md` where `<short-name>` is kebab-case ?4 words.
-3. Update `06-PLANS/_PLANS-INDEX.md`.
+2. Save to `../MessengerMapper-VAULT/02-ARCHITECTURE/plans/active/YYYY-MM-DD-<short-name>.md` where `<short-name>` is kebab-case ?4 words.
+3. Update `02-ARCHITECTURE/plans/_PLANS-INDEX.md`.
 4. Update `## 2. THE TECHNICAL NARRATIVE` in `../MessengerMapper-VAULT/04-CONTEXT/HANDOFF.md` to reference the new plan.
 
 ### Phase 3  Confirm and stop
@@ -41,7 +41,7 @@ Once design is approved by user, invoke the `writing-plans` skill at `../../../T
 Output:
 
 ```
-Plan written: 06-PLANS/active/YYYY-MM-DD-<short-name>.md.
+Plan written: 02-ARCHITECTURE/plans/active/YYYY-MM-DD-<short-name>.md.
 Phases: <N>. Open questions: <count>. Ready to execute.
 Awaiting "go" or amendments.
 ```
