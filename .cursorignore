@@ -1,0 +1,32 @@
+# PURPOSE: Cursor ignores these paths when indexing. Skeleton; tune per project.
+
+# Generated artifacts
+node_modules/
+.venv/
+venv/
+env/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+target/
+*.egg-info/
+
+# Logs and tmp
+*.log
+logs/
+tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (defense in depth - they should not be in the repo at all)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json

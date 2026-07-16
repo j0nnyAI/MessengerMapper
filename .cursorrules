@@ -1,0 +1,57 @@
+# Project Rules - MessengerMapper
+
+Cursor overlay. Ritual + boundaries: **`./AGENTS.md`** (§ Entry parameters, § First action, § Boundaries).
+
+## Persona binding
+
+| Parameter | Value |
+|---|---|
+| `persona` | `planner` |
+| `hydration_line` | `Hydrated on MessengerMapper. Persona: planner. Ready.` |
+
+Map `context_path` / `nexus_index` to the two paths above; run `AGENTS.md` § First action. Emit `hydration_line` only if both resolve; else `failure_line` from AGENTS.md. Session state: `HANDOFF.md` tags only (AGENTS.md § Boundaries).
+
+## Namespace and control-plane scope
+
+THE-NEXUS structural boundaries apply **only** to the framework control plane - not to application code trees. Do not assume a blank-slate or greenfield layout.
+
+**In scope (Nexus control plane):**
+
+- Root control assets: `.cursorrules`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `.claudecode.json`, `.antigravityignore`
+- Agent config trees: `.cursor/`, `.claude/`, `.gemini/`, `.antigravity/`, `.agents/` (`.agent/` legacy)
+- Bootstrap scripts under `scripts/` installed by init (e.g. `post-commit-context-update.py`)
+- Sibling vault: `../MessengerMapper-VAULT/` - especially `04-CONTEXT/HANDOFF.md`, ledgers, and memory paths referenced by the commit cycle
+
+**Out of scope (application code - do not reshape unless the operator asks):**
+
+- Source, test, build, and deploy trees (`src/`, `tests/`, `lib/`, `app/`, `packages/`, etc.)
+- Package and runtime manifests (`package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, ...)
+- Product-owned CI/CD, infra, and environment configuration
+
+Boundary edits outside the control plane require explicit operator direction.
+
+## Application adaptation (system parameters)
+
+Adapt smoothly to whatever app architecture is already on disk. Honor localized conventions before imposing template shapes.
+
+| Parameter | Rule |
+|---|---|
+| `app_layout` | Discover from disk. Never require a scaffold-only directory map for application code. |
+| `source_paths` | Follow existing module boundaries (`src/`, `internal/`, monorepo packages, feature folders, etc.). |
+| `lint_test_run` | Prefer hydrated `# add install command`, `# add test command`, and `# add run command` when present; otherwise use the repo's native tooling (`package.json` scripts, `Makefile`, `justfile`, framework defaults). |
+| `control_plane` | Proactive edits default to Nexus control-plane paths and vault handoff surfaces only. |
+
+## Operator workflow interception
+
+Antigravity parity: Always-On rules live in `.agents/rules/` (materialized from `.antigravity/rules.json`). Antigravity cannot load `.mdc` files - obey `nexus-spatial-invariants.md` and `nexus-background-compaction.md` at session start.
+
+Natural-language operator phrases are **mandatory tool-execution triggers**, not suggestions.
+
+| Class | Example phrases | Full spec |
+|---|---|---|
+| `TEARDOWN` | wrap up, session end, teardown, handoff | `.cursor/rules/00-always.mdc` § Operator phrase interception |
+| `FULL_LIFECYCLE` | commit and push, commit changes, push changes | `.cursor/rules/04-commit-cycle.mdc` § Interception cascade |
+
+**Hard rule:** On trigger match, run `handoff.py` then `review-commit.py` (validation pass) **before** any git commit/push action. `FULL_LIFECYCLE` continues to `git add .` → commit with HANDOFF narrative → `git push` only after both scripts exit `0`.
+
+**Launcher:** `python "../THE-NEXUS/scripts/<script>.py" --project-root "." --vault-root "../MessengerMapper-VAULT"` - cross-platform; substitute `python3` only when `python` is absent.
